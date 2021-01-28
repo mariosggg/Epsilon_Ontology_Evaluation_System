@@ -22,7 +22,7 @@
 
 </head>
 
-<body id="page-top" style="text-align:center" onload="metrics_load_new()">
+<body id="page-top" style="text-align:center" onload="metrics_load_new(1)">
   <!-- Page Wrapper -->
   <div id="wrapper">
     <!-- Content Wrapper -->
@@ -51,7 +51,20 @@
 				<div class="col-sm-6 col-md-6">
 				  <div class="card shadow mb-4">
 					<div class="card-header py-3">
-					  <h6 class="m-0 font-weight-bold text-primary">Metrics 2 - Attribute Richness</h6>
+					  <h6 class="m-0 font-weight-bold text-primary">Metrics 2 - Appropriateness</h6>
+					</div>
+					<div class="card-body">
+					  <div class="chart-pie pt-4">
+						<canvas id="myBarChart4"></canvas>
+					  </div>
+					  <hr>
+					</div>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-6">
+				  <div class="card shadow mb-4">
+					<div class="card-header py-3">
+					  <h6 class="m-0 font-weight-bold text-primary">Metrics 3 - Attribute Richness</h6>
 					</div>
 					<div class="card-body">
 					  <div class="chart-pie pt-4">
@@ -64,7 +77,7 @@
 			  <div class="col-sm-6 col-md-6">
 				<div class="card shadow mb-4">
 				  <div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Metrics 3 - Relative Sizes </h6>
+					<h6 class="m-0 font-weight-bold text-primary">Metrics 4 -  Inheritance Richness </h6>
 				  </div>
 				  <div class="card-body">
 					<div class="chart-pie pt-4">
@@ -77,14 +90,39 @@
 			  <div class="col-sm-6 col-md-6">
 				<div class="card shadow mb-4">
 				  <div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Metrics 4 -  Inheritance Richness </h6>
+					<h6 class="m-0 font-weight-bold text-primary">Metrics 5 - Relative Sizes </h6>
 				  </div>
 				  <div class="card-body">
 					<div class="chart-pie pt-4">
 					  <canvas id="myBarChart3"></canvas>
 					</div>
 					<hr>
-				  
+				  </div>
+				</div>
+			  </div>
+			  <div class="col-sm-6 col-md-6">
+				<div class="card shadow mb-4">
+				  <div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Metrics 6 - Average Population </h6>
+				  </div>
+				  <div class="card-body">
+					<div class="chart-pie pt-4">
+					  <canvas id="myBarChart5"></canvas>
+					</div>
+					<hr>
+				  </div>
+				</div>
+			  </div>
+			  <div class="col-sm-6 col-md-6">
+				<div class="card shadow mb-4">
+				  <div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Metrics 7 - Atomic Size </h6>
+				  </div>
+				  <div class="card-body">
+					<div class="chart-pie pt-4">
+					  <canvas id="myBarChart6"></canvas>
+					</div>
+					<hr>
 				  </div>
 				</div>
 			  </div>
