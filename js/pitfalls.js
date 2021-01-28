@@ -121,6 +121,7 @@ async function load_new(x){
 		selected_chart=charts[id];
 		
 		document.getElementById("title").innerHTML =titles[id];
+		document.getElementById("button").innerHTML ="Λεπτομέρειες";
 		
 		for (var j = 0; j < selected_chart.length; j++){
 			await sleep((random[id]/selected_chart.length));
