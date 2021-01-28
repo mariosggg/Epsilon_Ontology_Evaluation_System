@@ -22,7 +22,7 @@
 
 </head>
 
-<body id="page-top" style="text-align:center">
+<body id="page-top" style="text-align:center" onload="body_load(0)">
 	<label for="ontologies">Υποστηριζόμενες Οντολογίες:</label>
 	<select name="ontologies" id="ontologies" onchange="load_new(1)">
 		<option value="0">Pizza</option>
@@ -50,7 +50,7 @@
 					  <h6 class="m-0 font-weight-bold text-primary">Pitfalls 1 -  Summary </h6>
 					</div>
 					<div class="card-body">
-					  <div class="chart-pie pt-4">
+					  <div class="chart-pie pt-4" id="insert_canvas1">
 						<canvas id="myBarChart0"></canvas>
 					  </div>
 					  <hr>
@@ -63,7 +63,7 @@
 					  <h6 class="m-0 font-weight-bold text-primary">Pitfalls 2 - Importance</h6>
 					</div>
 					<div class="card-body">
-					  <div class="chart-pie pt-4">
+					  <div class="chart-pie pt-4" id="insert_canvas2">
 						<canvas id="myBarChart1"></canvas>
 					  </div>
 					  <hr>
