@@ -34,21 +34,23 @@ async function metrics_load_new(x){
 	
 	document.getElementById("ontology_name").innerHTML = '';
 	
-	metrics_prepare();
+	if(x!=0){
+		metrics_prepare();
+	}
 	
 	for (var j = 0; j < current_chart_length; j++) {
 		results[j]=[];
 		
 		await metrics_wait(1000);
 		if(x==0){
-			data=metric_charts[j][3];
+			results[j]=metric_charts[j][3];
 		}else{
 			for (var i = 0; i < metric_graphs.length; i++) {
 				results[j][i]=0;
 				data=calculate_data(i,j);
 				results[j][i]=data;
 			}
-			data=metric_charts[j][3];
+			results[j]=metric_charts[j][3];
 		}
 		metrics_create_chart(metric_charts[j][0],metric_charts[j][1],metric_charts[j][2],results[j]);
 		await metrics_wait(1000);
