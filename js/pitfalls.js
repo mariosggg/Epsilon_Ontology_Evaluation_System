@@ -9,75 +9,96 @@ titles=['Semantic Web Pitfalls Pizza Ontology',
 	'Semantic Web Pitfalls Music Ontology'];
 	
 types=['doughnut','bar'];
+
 charts_pizza=[
 	["myBarChart0",types[1],["P36", "P37"],[1,1]],
 	["myBarChart1",types[0],["Minor","Important", "Critical"],[1,0,1]]
 ];
-
 charts_dublincore=[
 	["myBarChart0",types[1],["P36", "P37"],[1,1]],
 	["myBarChart1",types[0],["Minor","Important", "Critical"],[1,0,1]]
 ];
-
 charts_cidoc=[
 	["myBarChart0",types[1],["P04","P06","P07","P08","P11","P36","P40"],[1,2,1,204,45,1,1]],
 	["myBarChart1",types[0],["Minor","Important", "Critical"],[207,45,3]]
 ];
-
 charts_foaf=[
 	["myBarChart0",types[1],["P04","P08","P11","P12","P13","P22","P34","P35","P36","P41"],[2,2,7,2,27,1,4,1,1,6]],
 	["myBarChart1",types[0],["Minor","Important", "Critical"],[43,20,0]]
 ];
-
 charts_music=[
 	["myBarChart0",types[1],["P36", "P40"],[1,1]],
 	["myBarChart1",types[0],["Minor","Important", "Critical"],[1,0,1]]
 ];
 
+backgroundColors=['#4e73df', '#1cc88a', '#36b9cc','#FA8072','#FFA07A','##DFFF00','#CCCCFF','#40E0D0','#9FE2BF','#FFBF00'],
+
 charts=[charts_pizza,charts_dublincore,charts_cidoc,charts_foaf,charts_music];
 
 random=[4000,5000,2000,1500,3000];
 
-selected_chart=charts[0];
-
 var myPieChart=[];
-
 var ctx=[];
-//*
-for (var j = 0; j < selected_chart.length; j++) {
-	ctx[j] = document.getElementById(selected_chart[j][0]);
+var config=[];
+var backgroundColor=[];
+var legends_need=[false,true];
+
+function body_load(x){
+	document.getElementById("title").innerHTML =titles[x];
 	
-	myPieChart[j] = new Chart(ctx[j], {
-	type: selected_chart[j][1],
-	data: {
-	labels: selected_chart[j][2],
-	datasets: [{
-	  data: selected_chart[j][3],
-	  backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-	  hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-	  hoverBorderColor: "rgba(234, 236, 244, 1)",
-	}],
-	},
-	options: {
-	maintainAspectRatio: false,
-	tooltips: {
-	  backgroundColor: "rgb(255,255,255)",
-	  bodyFontColor: "#858796",
-	  borderColor: '#dddfeb',
-	  borderWidth: 1,
-	  xPadding: 15,
-	  yPadding: 15,
-	  displayColors: false,
-	  caretPadding: 10,
-	},
-	legend: {
-	  display: false
-	},
-	cutoutPercentage: 80,
-	},
-	});
+	var starting_data=[
+						["myBarChart0",types[1],["P36", "P37"],[1,1]],
+						["myBarChart1",types[0],["Minor","Important", "Critical"],[1,0,1]]
+					];
+	
+	for (var j = 0; j < starting_data.length; j++){
+		backgroundColor.push([]);
+		for (var i = 0; i < starting_data[j][2].length; i++){
+			backgroundColor[j].push(backgroundColors[i]);
+		}
+		config[j]= {
+			type: starting_data[j][1],
+			data: {
+				labels: starting_data[j][2],
+				datasets: [{
+					data: starting_data[j],
+					backgroundColor: backgroundColor[j]
+				}],
+			},
+			options: {
+				maintainAspectRatio: false,
+				responsive: true,
+				legend: {
+					display: legends_need[j],
+					position: 'top',
+				},
+				title: {
+					display: false
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				},
+				tooltips: {
+					backgroundColor: "rgb(255,255,255)",
+					bodyFontColor: "#858796",
+					borderColor: '#dddfeb',
+					borderWidth: 1,
+					xPadding: 15,
+					yPadding: 15,
+					displayColors: false,
+					caretPadding: 10,
+				},
+				cutoutPercentage: 80,
+			}
+		};
+		ctx[j] = document.getElementById(starting_data[j][0]).getContext('2d');
+		myPieChart[j] = new Chart(ctx[j], config[j]);
+		
+		var selected_chart=charts[0];
+		update_chart(myPieChart[j],selected_chart[j][2],selected_chart[j][3],config[j]);
+	}
 }
-//*/
 
 async function load_new(x){
 	document.getElementById("ontologies").disabled = true;
@@ -87,69 +108,51 @@ async function load_new(x){
 	clearTable();
 	
 	if(x==0){
-		document.getElementById("button").style="visibility:hidden";
-		send_to_oops();
+		if(document.getElementById("button").innerHTML=="Απόκρυψη"){
+			document.getElementById("button").innerHTML ="Λεπτομέρειες";
+			document.getElementById("ontology_name").innerHTML = '';
+		}else{
+			document.getElementById("button").innerHTML ="Απόκρυψη";
+			create_static_table();
+			document.getElementById("ontology_name").innerHTML = 'Detailed Table';
+		}
 	}else{
 		var id = document.getElementById("ontologies").value;
+		selected_chart=charts[id];
 		
 		document.getElementById("title").innerHTML =titles[id];
 		
-		selected_chart=charts[id];
-		
-		await wait(random[id]);
-		
+		for (var j = 0; j < selected_chart.length; j++){
+			await sleep((random[id]/selected_chart.length));
+			update_chart(myPieChart[j],selected_chart[j][2],selected_chart[j][3],config[j]);
+		}
 		document.getElementById("button").style="visibility:none";
 		document.getElementById("ontology_name").innerHTML = '';
-		
-		for (var j = 0; j < selected_chart.length; j++) {
-			create_chart(ctx[j],myPieChart[j],selected_chart[j][0],selected_chart[j][1],selected_chart[j][2],selected_chart[j][3]);
-		}
 	}
 	document.getElementById("ontologies").disabled = false;
 	document.getElementById("button").disabled = false;
 }
-function create_chart(ctx_id,myPieChart_id,chart_id,chart_type,chart_labels,chart_data){
-	
-	if(myPieChart_id) myPieChart_id.destroy();
-	
-	ctx_id=document.getElementById(chart_id);
-	
-	myPieChart_id = new Chart(ctx_id, {
-	type: chart_type,
-	data: {
-	labels: chart_labels,
-	datasets: [{
-	  data: chart_data,
-	  backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-	  hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-	  hoverBorderColor: "rgba(234, 236, 244, 1)",
-	}],
-	},
-	options: {
-	maintainAspectRatio: false,
-	tooltips: {
-	  backgroundColor: "rgb(255,255,255)",
-	  bodyFontColor: "#858796",
-	  borderColor: '#dddfeb',
-	  borderWidth: 1,
-	  xPadding: 15,
-	  yPadding: 15,
-	  displayColors: false,
-	  caretPadding: 10,
-	},
-	legend: {
-	  display: false
-	},
-	cutoutPercentage: 80,
-	},
-	});
-	
-	myPieChart_id.update();
-}
-const send_to_oops = async () => {
-	create_static_table();
-	
-	document.getElementById("ontology_name").innerHTML = 'Detailed Table';
+function update_chart(myPieChart_id,chart_labels,chart_data,config_id){
+	for (var j = 0; j < 10; j++) {
+		config_id.data.labels.splice(-1, 1);
+
+		config_id.data.datasets.forEach(function(dataset) {
+			dataset.data.pop();
+			dataset.backgroundColor.pop();
+		});
+		myPieChart_id.update();
+	}
+	for (var j = 0; j < chart_labels.length; j++) {
+		config_id.data.labels.push(chart_labels[j]);
+
+		var newColor = backgroundColors[j];
+
+		config_id.data.datasets.forEach(function(dataset) {
+			dataset.data.push(chart_data[j]);
+			dataset.backgroundColor.push(newColor);
+		});
+		myPieChart_id.update();
+	}
 }
 function create_static_table(){
 	var id = document.getElementById("ontologies").value;
@@ -239,8 +242,6 @@ function generateTableHead(table, data) {
 		row.appendChild(th);
 	}
 }
-function wait(timeout) {
-    return new Promise(resolve => {
-        setTimeout(resolve, timeout);
-    });
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
