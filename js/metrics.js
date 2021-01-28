@@ -4,13 +4,13 @@ Chart.defaults.global.defaultFontColor = '#858796';
 	
 metric_charts=[];
 
-metric_charts[0]=["myBarChart0",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[151,0,84,88,257]]; //Size
-metric_charts[1]=["myBarChart4",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.12,0.65,0.94,0.54,0.48]]; //Appropriateness
-metric_charts[2]=["myBarChart1",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[13.59,0,45.12,22.54,31.29]]; //Attr Richness
-metric_charts[3]=["myBarChart2",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.25,0,0.23,1.02,0.43]]; //Inheritance Richness
-metric_charts[4]=["myBarChart3",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[1.28,0,0.11,0.07,0.11]]; //Relative Sizes
-metric_charts[5]=["myBarChart5",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.03,0,0,0.46,0.14]]; //Average Population 
-metric_charts[6]=["myBarChart6",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[12.87,0,45.12,7.17,11.2]]; //Atomic Size
+metric_charts[0]=["myBarChart0",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[156,0,84,88,257]]; //Size
+metric_charts[1]=["myBarChart4",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.118778744494276,0.6485207907885175,0.9381533400219321,0.5376634027639661,0.4748778409101148]]; //Appropriateness
+metric_charts[2]=["myBarChart1",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[13.594405594405595,0,45.11904761904762,22.535714285714285,31.293478260869566]]; //Attr Richness
+metric_charts[3]=["myBarChart2",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.2613065326633166,0,0.22641509433962265,1.0232558139534884,0.4290484140233723]]; //Inheritance Richness
+metric_charts[4]=["myBarChart3",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[1.2797202797202798,0,0.10714285714285714,0.07142857142857142,0.10869565217391304]]; //Relative Sizes
+metric_charts[5]=["myBarChart5",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.03496503496503497,0,0,0.4642857142857143,0.14130434782608695]]; //Average Population 
+metric_charts[6]=["myBarChart6",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[12.461538461538462,0,45.11904761904762,7.170454545454546,11.202334630350194]]; //Atomic Size
 
 var metric_graphs=['http://localhost:8890/pizza','http://localhost:8890/dublincore','http://localhost:8890/cidoc','http://localhost:8890/foaf','http://localhost:8890/musicontology'];
 var metric_queries=['SELECT distinct count(distinct ?instance) WHERE {?instance a ?class . ?class a owl:Class}', 									//instances 
