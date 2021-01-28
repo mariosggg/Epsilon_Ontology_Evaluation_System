@@ -48,7 +48,7 @@ async function metrics_load_new(x){
 				data=calculate_data(i,j);
 				results[j][i]=data;
 			}
-			//data=metric_charts[j][3];
+			data=metric_charts[j][3];
 		}
 		metrics_create_chart(metric_charts[j][0],metric_charts[j][1],metric_charts[j][2],results[j]);
 		await metrics_wait(1000);
