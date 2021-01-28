@@ -4,7 +4,7 @@ Chart.defaults.global.defaultFontColor = '#858796';
 	
 metric_charts=[];
 
-metric_charts[0]=["myBarChart0",'bar',["Pizza", "Cidoc", "Dublincore", "FOAF", "Music"],[151,0,84,88,257]]; //Size
+metric_charts[0]=["myBarChart0",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[151,0,84,88,257]]; //Size
 metric_charts[1]=["myBarChart4",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.12,0.65,0.94,0.54,0.48]]; //Appropriateness
 metric_charts[2]=["myBarChart1",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[13.59,0,45.12,22.54,31.29]]; //Attr Richness
 metric_charts[3]=["myBarChart2",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.25,0,0.23,1.02,0.43]]; //Inheritance Richness
@@ -12,7 +12,7 @@ metric_charts[4]=["myBarChart3",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "
 metric_charts[5]=["myBarChart5",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[0.03,0,0,0.46,0.14]]; //Average Population 
 metric_charts[6]=["myBarChart6",'bar',["Pizza", "Dublincore", "Cidoc", "FOAF", "Music"],[12.87,0,45.12,7.17,11.2]]; //Atomic Size
 
-var metric_graphs=['http://localhost:8890/pizza','http://localhost:8890/cidoc','http://localhost:8890/dublincore','http://localhost:8890/foaf','http://localhost:8890/musicontology'];
+var metric_graphs=['http://localhost:8890/pizza','http://localhost:8890/dublincore','http://localhost:8890/cidoc','http://localhost:8890/foaf','http://localhost:8890/musicontology'];
 var metric_queries=['SELECT distinct count(distinct ?instance) WHERE {?instance a ?class . ?class a owl:Class}', 									//instances 
 					'SELECT (count(distinct ?entity) AS ?Entities) WHERE{?entity ?p ?o}',															//entities
 					'SELECT (count (?s) as ?axioms) WHERE {?s ?p ?o}',																				//axioms
