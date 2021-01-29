@@ -103,16 +103,16 @@ function body_load(x){
 async function load_new(x){
 	document.getElementById("ontologies").disabled = true;
 	document.getElementById("button").disabled = true;
-	document.getElementById("ontology_name").innerHTML = "Παρακαλώ περιμένετε..";
+	document.getElementById("ontology_name").innerHTML = "Please wait..";
 
 	clearTable();
 	
 	if(x==0){
-		if(document.getElementById("button").innerHTML=="Απόκρυψη"){
-			document.getElementById("button").innerHTML ="Λεπτομέρειες";
+		if(document.getElementById("button").innerHTML=="Hide"){
+			document.getElementById("button").innerHTML ="Details";
 			document.getElementById("ontology_name").innerHTML = '';
 		}else{
-			document.getElementById("button").innerHTML ="Απόκρυψη";
+			document.getElementById("button").innerHTML ="Hide";
 			create_static_table();
 			document.getElementById("ontology_name").innerHTML = 'Detailed Table';
 		}
@@ -121,7 +121,7 @@ async function load_new(x){
 		selected_chart=charts[id];
 		
 		document.getElementById("title").innerHTML =titles[id];
-		document.getElementById("button").innerHTML ="Λεπτομέρειες";
+		document.getElementById("button").innerHTML ="Details";
 		
 		for (var j = 0; j < selected_chart.length; j++){
 			await sleep((random[id]/selected_chart.length));
